@@ -38,3 +38,47 @@ Assume that Player-1 displays **PS** (Paper + Scissors) and Player-2 displays **
 You may infer that, *if the objective of the game is **not to lose**, then Player-1 should always play paper*, as it ties against paper and wins against rock, so it never loses. However, **is this the best payoff**?
 
 The objective in this project is to maximize expected payoff, using the scores above. This differs from maximizing win probability alone because losses also contribute to the payoff. For the equilibrium strategy, consider an opponent who also chooses a strategy optimally.
+
+
+#### Payoff via equilibrium
+
+The reason that Player-1 should not *always* play Paper in this scenario is that it does not maximize the payoff. Think about it: if Player-2 **expects** Player-1 to play Paper **always**, then Player-2 can simply play Paper as well to force a tie. Thus, while Player-1 will never lose, Player-1 will never win against this response either!
+
+**However**, if Player-1 **knows** that Player-2 is expecting Player-1 to play Paper, and thus Player-2 will play Paper accordingly, then Player-1 may want to play Scissors **expecting** Player-2 to play Paper, in order to score a win.
+
+**But**... The same argument can be made for Player-2, who may anticipate this change and play Rock against Player-1's Scissors.
+
+Thus, Player-1 should not play Paper **always**, and Player-2 should not expect Player-1 to do so either.
+
+Suppose Player-1, instead of playing Paper **always**, picks Paper with a probability of $p$ and Scissors with a probability of $1-p$. If Player-2 plays Paper, then the expected payoff for Player-1 is:
+
+$$
+p \cdot 0 + (1-p) \cdot 1 = 1-p.
+$$
+If Player-2 plays Rock, then the expected payoff for Player-1 is:
+
+$$
+p \cdot 1 + (1-p) \cdot (-1) = 2p-1.
+$$
+
+Since Player-2 can only play Paper or Rock, consider a [Nash equilibrium](https://en.wikipedia.org/wiki/Nash_equilibrium) in which Player-2 uses both choices with positive probability. Player-1's mixture must make Player-2 indifferent between these choices. Because the game is zero-sum, this is equivalent to making Player-1's expected payoff the same against either choice:
+
+$$
+\begin{aligned}
+p \cdot 0 + (1-p) \cdot 1 &= p \cdot 1 + (1-p) \cdot (-1),\\
+1-p &= 2p-1,\\
+p &= \frac{2}{3}.
+\end{aligned}
+$$
+
+This equal-payoff condition applies to actions used with positive probability in a mixed-strategy equilibrium. It is not a requirement that every possible action have the same payoff in every game.
+
+hus, **Player-1 should pick Paper with a $2/3$ probability and Scissors with a $1/3$ probability**! 
+
+This means randomly selecting Paper or Scissors according to these probabilities in each round. Always selecting the more probable option would not implement the mixed strategy.
+
+#### What about Player-2?
+
+This is left as an exercise: if Player-2 plays Paper with probability $q$ and Rock with probability $(1-q)$, you can show that Player-2 should play Paper with a probability of $2/3$ and rock with a probability of $1/3$.
+
+[Untitled.ipynb](https://github.com/user-attachments/files/35433105/Untitled.ipynb)
